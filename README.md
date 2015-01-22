@@ -48,6 +48,12 @@ Windows. Make sure the MSVC runtime is compatible with the one used in the game 
 2. Run `Release/RuntimeInject.bat` to inject the DLL into the game process and run the EntryPoint function. Hit F1 to teleport forward or change stuff, see `DllMain.cpp`.
 3. Run `Release/RuntimeEject.bat` to unload the DLL. It's an ugly/dirty hack, but increases development speed quite a bit until some scripting support is added.
 
+## Hacking
+
+* Start looking at the `Internals.hpp` file to get a feel of how the internal classes work
+* Look at `Hacks.cpp` for some sample hacks like teleportation
+* Don't do debug builds, they will fail!
+
 ## License
 
 * The DLL injector was not made by me. See the help output for more information.
