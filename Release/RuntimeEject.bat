@@ -1,0 +1,1 @@
+Loader_IA32.exe --process="PwnAdventure3-Win32-Shipping.exe" --module="PwnAdventureSku.dll" --export="ExitPoint"

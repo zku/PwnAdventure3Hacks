@@ -11,7 +11,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -22,7 +21,16 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# VS stuff
+*.opensdf
+*.sdf
+*.exp
+*.idb
+*.lib
+*.pdb
+*.suo
+
+# Folders
+PwnAdventureSku/Release
+PwnAdventureSku/Debug
+Debug
