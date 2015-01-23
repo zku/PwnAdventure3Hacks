@@ -26,6 +26,27 @@ namespace pwny
 			}
 		}
 
+		// Teleport to Michael Angelo with F2.
+		if (GetAsyncKeyState(VK_F2) & 1)
+		{
+			if (currentTime - m_lastTeleportTime > 100)
+			{
+				hacks::TeleportToActor("MichaelAngelo");
+				m_lastTeleportTime = currentTime;
+			}
+		}
+
+		// Teleport to the blocky thing with F3.
+		if (GetAsyncKeyState(VK_F3) & 1)
+		{
+			if (currentTime - m_lastTeleportTime > 100)
+			{
+				Vector3 target = hacks::GetNamedLocation("BlockySpawnPoint");
+				hacks::TeleportTo(&target);
+				m_lastTeleportTime = currentTime;
+			}
+		}
+
 		return LogicState::KeepGoing;
 	}
 } // pwny

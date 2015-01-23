@@ -91,6 +91,8 @@ namespace pwny
 			float const x = std::cos(facing);
 			float const y = std::sin(facing);
 
+			// TODO: z
+
 			position.x += distance * x;
 			position.y += distance * y;
 
