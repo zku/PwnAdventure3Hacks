@@ -659,7 +659,8 @@ namespace pwny
 		{
 			kWorld = 0x00097D7C,
 			kGameAPI = 0x00097D80,
-			kPlayer = 0x00097E48
+			kPlayer = 0x00097E48,
+			kGameAPI_Tick = 0x0001DBD0
 		};
 	};
 

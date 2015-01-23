@@ -7,7 +7,6 @@ A tiny hacking framework for the PwnAdventure3: Pwnie Island game created by htt
 * Speedhack
 * Chat
 
-
 ```c++
 	// Teleport to the actor with the given name (substring match).
 	// Examples: Michael, Payne
@@ -31,7 +30,6 @@ A tiny hacking framework for the PwnAdventure3: Pwnie Island game created by htt
 	Vector3 GetNamedLocation(std::string const& location);
 ```
 
-
 ## Paltform
 
 Windows. Make sure the MSVC runtime is compatible with the one used in the game (e.g. with Visual Studio 2013).
@@ -45,13 +43,14 @@ Windows. Make sure the MSVC runtime is compatible with the one used in the game 
 ## How to
 
 1. Start game
-2. Run `Release/RuntimeInject.bat` to inject the DLL into the game process and run the EntryPoint function. Hit F1 to teleport forward or change stuff, see `DllMain.cpp`.
-3. Run `Release/RuntimeEject.bat` to unload the DLL. It's an ugly/dirty hack, but increases development speed quite a bit until some scripting support is added.
+2. Run `Release/RuntimeInject.bat` to inject the DLL into the game process and run the EntryPoint function. Hit F1 to teleport forward or change stuff, see `Logic.cpp`
+3. Hit F9 to unload the DLL
 
 ## Hacking
 
 * Start looking at the `Internals.hpp` file to get a feel of how the internal classes work
 * Look at `Hacks.cpp` for some sample hacks like teleportation
+* `Logic::Pulse` is called every frame and allows actions to be executed from the main thread (don't execute state-altering stuff from other threads)
 * Don't do debug builds, they will fail!
 
 ## License

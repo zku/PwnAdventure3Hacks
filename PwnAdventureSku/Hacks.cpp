@@ -20,8 +20,8 @@ namespace pwny
 				IActor* actor = actorRef.m_object;
 				if (actor != nullptr)
 				{
-					std::string actorName(actor->vfptr->GetDisplayName(actor));
-					if (actorName.find(name) != std::string::npos)
+					std::string blueprint(actor->vfptr->GetBlueprintName(actor));
+					if (blueprint.find(name) != std::string::npos)
 					{
 						Vector3 pos;
 						actor->vfptr->GetLookPosition(actor, &pos);
@@ -31,7 +31,7 @@ namespace pwny
 				}
 			}
 
-			Chat("Could not find actor \"" + name + "\"");
+			//Chat("Could not find actor \"" + name + "\"");
 		}
 
 		void TeleportTo(Vector3* position)
@@ -56,6 +56,7 @@ namespace pwny
 			//Chat(logMsg);
 
 			Rotation rot{ 0, 0, 0 };
+			ue4actor->vfptr->GetRotation(ue4actor, &rot);
 			GameWorld->vfptr->SendRespawnEvent(GameWorld, me->GetPlayer(), position, &rot);
 			ue4actor->vfptr->LocalRespawn(ue4actor, position, &rot);
 		}
