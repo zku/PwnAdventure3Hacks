@@ -30,6 +30,8 @@ A tiny hacking framework for the PwnAdventure3: Pwnie Island game created by htt
 	Vector3 GetNamedLocation(std::string const& location);
 ```
 
+![Sample](http://i.imgur.com/F6P2efk.png)
+
 ## Paltform
 
 Windows. Make sure the MSVC runtime is compatible with the one used in the game (e.g. with Visual Studio 2013).
