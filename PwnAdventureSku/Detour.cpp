@@ -69,4 +69,9 @@ namespace pwny
 		memcpy_s(reinterpret_cast<void*>(m_address), 6, m_original.data(), 6);
 		m_applied = false;
 	}
+
+	DWORD Detour::GetAddress() const
+	{
+		return m_address;
+	}
 } // pwny

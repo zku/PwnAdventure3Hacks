@@ -2,6 +2,7 @@
 
 // Windows.
 #include <Windows.h>
+#include <d3d11.h>
 
 // Standard.
 #include <string>
@@ -653,6 +654,30 @@ namespace pwny
 		std::vector<LocationAndRotation> GetNamedLocationPointList(std::string const& location);
 	};
 
+#pragma pack(push, 1)
+	struct UE4GraphicsContainsChain
+	{
+	private:
+		char m_filler0[0x48];					// 0x0000
+	public:
+		IDXGISwapChain* m_swapChain;			// 0x0048
+	};
+
+	struct UE4Graphics
+	{
+	private:
+		char m_filler0[0x40];					// 0x0000
+	public:
+		IDXGIFactory* m_dxgiFactory;			// 0x0040
+		ID3D11DeviceContext* m_deviceContext;	// 0x0044
+		ID3D11Device* m_device;					// 0x0048
+	private:
+		char m_filler1[0x1528 - 0x004c];		// 0x004c
+	public:
+		UE4GraphicsContainsChain* m_unkChain;	// 0x1528
+	};
+#pragma pack(pop)
+
 	struct Offsets
 	{
 		enum
@@ -660,7 +685,9 @@ namespace pwny
 			kWorld = 0x00097D7C,
 			kGameAPI = 0x00097D80,
 			kPlayer = 0x00097E48,
-			kGameAPI_Tick = 0x0001DBD0
+			kGameAPI_Tick = 0x0001DBD0,
+			kGraphicsObject = 0x016C3948,
+			kEndFrame = 0x003fe930,
 		};
 	};
 
@@ -668,7 +695,9 @@ namespace pwny
 	DWORD GetModuleBaseAddress();
 
 	// Rebase an address relative to the GameLogic.dll module to an absolute address.
-	DWORD Rebase(DWORD address);
+	DWORD RebaseModule(DWORD address);
+
+	DWORD RebaseGame(DWORD address);
 
 	// Get the global GameAPI object.
 	GameAPI* GetGameAPIObject();
@@ -678,6 +707,8 @@ namespace pwny
 
 	// Get the connected player object.
 	IPlayer* GetMe();
+
+	UE4Graphics* GetGraphicsObject();
 
 	// Lets make sure we are using the proper runtime and that the sizes add up!
 	// Even if these sizes add up, it might still crash and burn. MSVC interop between 2 runtimes is.. interesting.
@@ -689,4 +720,6 @@ namespace pwny
 	static_assert(offsetof(Player, m_eventsToSend) == 0x1bc, "Player::m_eventsToSend");
 	static_assert(offsetof(Player, m_circuitStateCooldownTimer) == 0x1d8, "Player::m_circuitStateCooldownTimer");
 	static_assert(offsetof(Actor, m_health) == 0x30, "Actor::m_health");
+	static_assert(sizeof(UE4Graphics) == 0x152c, "UE4Graphics size incorrect.");
+	static_assert(offsetof(UE4Graphics, m_unkChain) == 0x1528, "UE4Graphics::m_unkChain");
 } // pwny

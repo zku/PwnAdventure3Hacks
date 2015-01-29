@@ -30,6 +30,7 @@ namespace pwny
 		bool IsApplied() const;
 		void Apply();
 		void Remove();
+		DWORD GetAddress() const;
 
 	private:
 		Detour& operator=(Detour const& other);

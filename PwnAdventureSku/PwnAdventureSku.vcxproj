@@ -44,6 +44,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Code\AntTweakBar\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Code\AntTweakBar\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -78,14 +80,18 @@
   <ItemGroup>
     <ClCompile Include="Detour.cpp" />
     <ClCompile Include="DllMain.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Hacks.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Internals.cpp" />
     <ClCompile Include="Logic.cpp" />
     <ClCompile Include="Tick.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Detour.hpp" />
+    <ClInclude Include="Graphics.hpp" />
     <ClInclude Include="Hacks.hpp" />
+    <ClInclude Include="Input.hpp" />
     <ClInclude Include="Internals.hpp" />
     <ClInclude Include="Logic.hpp" />
     <ClInclude Include="Tick.hpp" />

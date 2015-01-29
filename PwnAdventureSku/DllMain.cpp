@@ -9,8 +9,6 @@
 #include <boost/format.hpp>
 
 // Pwny.
-#include "Internals.hpp"
-#include "Hacks.hpp"
 #include "Tick.hpp"
 
 namespace pwny

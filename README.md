@@ -38,6 +38,7 @@ Windows. Make sure the MSVC runtime is compatible with the one used in the game 
 
 * Windows
 * Boost
+* AntTweakBar
 * Some C++11 (VS2013)
 
 ## How to

@@ -4,28 +4,28 @@ namespace pwny
 {
 	DWORD GetModuleBaseAddress()
 	{
-		static DWORD baseAddress = reinterpret_cast<DWORD>(GetModuleHandleA("GameLogic.dll"));
-		return baseAddress;
+		static DWORD moduleBaseAddress = reinterpret_cast<DWORD>(GetModuleHandleA("GameLogic.dll"));
+		return moduleBaseAddress;
 	}
 
-	DWORD Rebase(DWORD address)
+	DWORD RebaseModule(DWORD address)
 	{
 		return GetModuleBaseAddress() + address;
 	}
 
 	GameAPI* GetGameAPIObject()
 	{
-		return *reinterpret_cast<GameAPI**>(Rebase(Offsets::kGameAPI));
+		return *reinterpret_cast<GameAPI**>(RebaseModule(Offsets::kGameAPI));
 	}
 
 	World* GetWorldObject()
 	{
-		return *reinterpret_cast<World**>(Rebase(Offsets::kWorld));
+		return *reinterpret_cast<World**>(RebaseModule(Offsets::kWorld));
 	}
 
 	IPlayer* GetMe()
 	{
-		return *reinterpret_cast<IPlayer**>(Rebase(Offsets::kPlayer));
+		return *reinterpret_cast<IPlayer**>(RebaseModule(Offsets::kPlayer));
 	}
 
 	Player* IPlayer::GetPlayer() const
@@ -51,5 +51,21 @@ namespace pwny
 
 		this->vfptr->FreeNamedLocationPoints(this, list);
 		return locations;
+	}
+
+	DWORD GetGameBaseAddress()
+	{
+		static DWORD gameBaseAddress = reinterpret_cast<DWORD>(GetModuleHandleA(nullptr));
+		return gameBaseAddress;
+	}
+
+	DWORD RebaseGame(DWORD address)
+	{
+		return GetGameBaseAddress() + address;
+	}
+
+	UE4Graphics* GetGraphicsObject()
+	{
+		return *reinterpret_cast<UE4Graphics**>(RebaseGame(Offsets::kGraphicsObject));
 	}
 } // pwny
